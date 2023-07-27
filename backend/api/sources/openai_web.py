@@ -294,6 +294,8 @@ class OpenaiWebChatManager:
                     line = json.loads(line)
                 except json.decoder.JSONDecodeError:
                     continue
+                if "is_completion" in line:
+                    continue
                 if not _check_fields(line):
                     if "error" in line:
                         raise OpenaiWebException(line["error"])

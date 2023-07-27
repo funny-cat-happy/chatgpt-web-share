@@ -506,7 +506,7 @@ async def chat(websocket: WebSocket):
             source_setting = user.setting.openai_web if ask_request.source == ChatSourceTypes.openai_web else user.setting.openai_api
 
             total_ask_count = source_setting.total_ask_count
-            model_ask_count = source_setting.per_model_ask_count.dict().get(ask_request.model)
+            model_ask_count = source_setting.per_model_ask_count.dict()["__root__"].get(ask_request.model)
             assert model_ask_count, "model_ask_count is None"
             if total_ask_count != -1 or model_ask_count != -1:
 
